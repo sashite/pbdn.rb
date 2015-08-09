@@ -14,13 +14,16 @@ module Sashite
     # @api private
     #
     class Structure
-      attr_reader :src_square, :dst_square, :piece_name
-
       def initialize(src_square, dst_square, piece_name)
         @src_square = src_square
         @dst_square = dst_square
         @piece_name = piece_name
       end
+
+      #
+      # @api public
+      #
+      attr_reader :src_square, :dst_square, :piece_name
 
       # PBDN are emitted with this method.
       #
