@@ -42,8 +42,8 @@ require 'sashite-pbdn'
 board_diff = Sashite::Pbdn.load(52, 36, 'W:P')
 board_diff.src_square # => 52
 board_diff.dst_square # => 36
-board_diff.piece_name # => 'W:P'
-board_diff.to_a       # => [52, 36, 'W:P']
+board_diff.piece_name # => :"W:P"
+board_diff.to_a       # => [52, 36, "W:P"]
 ```
 
 ## Contributing

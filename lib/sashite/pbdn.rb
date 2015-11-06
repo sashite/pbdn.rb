@@ -1,33 +1,37 @@
 # Namespace for the Sashite library.
 #
-# @api public
-#
-# @example 42 MUST be equal to 42
+# @example Let's represent e2e4 on a 8x8 chessboard.
 #   Sashite::Pbdn.load(52, 36, 'W:P').to_a # => [52, 36, 'W:P']
 module Sashite
   # Namespace for the PBDN parser and emitter.
-  #
-  # @api public
-  #
   module Pbdn
-    #
-    # @api private
-    #
+    # The main class.
     class Structure
+      # @param src_square [#to_i]   A source square.
+      # @param dst_square [#to_i]   A destination square.
+      # @param piece_name [#to_sym] A piece name.
       def initialize(src_square, dst_square, piece_name)
-        @src_square = src_square
-        @dst_square = dst_square
-        @piece_name = piece_name
+        @src_square = src_square.to_i
+        @dst_square = dst_square.to_i
+        @piece_name = piece_name.to_sym
       end
 
+      # @!attribute [r] src_square
       #
-      # @api public
+      # @return [Fixnum] A source square.
+      attr_reader :src_square
+
+      # @!attribute [r] dst_square
       #
-      attr_reader :src_square, :dst_square, :piece_name
+      # @return [Fixnum] A destination square.
+      attr_reader :dst_square
+
+      # @!attribute [r] piece_name
+      #
+      # @return [Symbol] A piece name.
+      attr_reader :piece_name
 
       # PBDN are emitted with this method.
-      #
-      # @api public
       #
       # @return [Array] the array of the board diff.
       def to_a
@@ -41,16 +45,14 @@ module Sashite
 
     # PBDN are parsed with this method.
     #
-    # @api public
-    #
-    # @example Parsing of e2e4 move, from Western chess
+    # @example Parsing of e2e4 move, from Western chess.
     #   load(52, 36, 'W:P')
     #
-    # @param src_square [#to_i]   Indicates a source square occupied by an actor
-    # @param dst_square [#to_i]   Indicates a target square
-    # @param piece_name [#to_sym] Indicates the name of the actor of the action
+    # @param src_square [#to_i]   A source square.
+    # @param dst_square [#to_i]   A destination square.
+    # @param piece_name [#to_sym] A piece name.
     #
-    # @return [Structure] the structure of the board diff.
+    # @return [Structure] The structure of the board diff.
     def self.load(src_square, dst_square, piece_name)
       Structure.new(src_square.to_i, dst_square.to_i, piece_name.to_sym)
     end
